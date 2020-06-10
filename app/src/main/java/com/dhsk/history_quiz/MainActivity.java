@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,11 +23,23 @@ public class MainActivity extends AppCompatActivity {
         quesTextView.setText("In which year did India gain its independence?");
 
     }
-    int flag=0;
 
+    int flag=0;
     int score=0;
     int ques=1;
+    String name;
+   public void getname(View v){
+       EditText nameText=(EditText) findViewById(R.id.nameEditText);
+       name= nameText.getText().toString();
+       Toast.makeText(this,"Name is "+name, Toast.LENGTH_SHORT).show();
+   }
    public void Submit_Clicked(View v){
+       if(ques==1){
+           CheckBox checkbox= (CheckBox) findViewById(R.id.checkbox);
+           if(checkbox.isChecked()){
+               Toast.makeText(this, "User has been to India", Toast.LENGTH_SHORT).show();
+           }
+       }
        update_score(flag);
    }
 
@@ -108,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         if(ques==6){
-            Toast.makeText(this,"Your score in the quiz is "+score, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,name +" scored "+ score+" in the quiz", Toast.LENGTH_SHORT).show();
             reset();
         }
 
